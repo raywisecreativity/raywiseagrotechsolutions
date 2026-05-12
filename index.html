@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>RAYWISE AGROTECH SOLUTIONS — PROGRAMMING THE FUTURE OF AGRICULTURE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <meta name="description" content="">
+  <meta name="keywords" content="html, css, javascript, jquery">
+  <meta name="author" content="">
+
+  <link rel="stylesheet" href="css/vendor/icomoon/style.css">
+  <link rel="stylesheet" href="css/vendor/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/vendor/animate.min.css">
+  <link rel="stylesheet" href="css/vendor/aos.css">
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="css/vendor/jquery.fancybox.min.css">
+
+  <!-- Theme Style -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-spy="scroll" data-target=".site-nav-target" data-offset="200">
+
+  <nav class="unslate_co--site-mobile-menu">
+    <div class="close-wrap d-flex">
+      <a href="#" class="d-flex ml-auto js-menu-toggle">
+        <span class="close-label">Close</span>
+        <div class="close-times">
+          <span class="bar1"></span>
+          <span class="bar2"></span>
+        </div>
+      </a>
+    </div>
+    <div class="site-mobile-inner"></div>
+  </nav>
+
+ <!-- CHATBOT PHOTO BUTTON -->
+<div class="chatbot-button" onclick="toggleChatbot()">
+  <img src="images/chatbot icon.png" alt="Chatbot">
+</div>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/2347069629150" class="whatsapp-button" target="_blank">
+  <img src="images/whatsapp icon.png" alt="WhatsApp">
+</a>
+
+<!-- CHATBOT WINDOW -->
+<div class="chatbot-container" id="chatbot">
+  <div class="chatbot-header">Ask Me Anything!</div>
+
+  <div class="chatbot-messages" id="chatbox"></div>
+
+  <div class="chatbot-input">
+    <input 
+      type="text" 
+      id="userInput" 
+      placeholder="Type your question..."
+      onkeypress="if(event.key === 'Enter') sendMessage()"
+    >
+
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+  <!-- CHATBOT SCRIPT -->
+  <script>
+    // Pre-trained FAQ based on your CV
+    const chatbotData = {
+     "hi": "Hello! Welcome to Raywise Agrotech Solutions. How can I assist you today?",
+  "hello": "Hi there! Feel free to ask me anything about my work or services.",
+  "who are you": "I'm Odukoya Samuel PA — He is a Generative AI Engineer, Front-End Developer, and Graphic Designer based in Lagos, Nigeria.",
+
+  "good morning": "Good morning! Welcome to Raywise Agrotech Solutions. How may I help you today?",
+
+  "good afternoon": "Good afternoon! How can I assist you today?",
+
+  "good evening": "Good evening! Feel free to ask me about our services or projects.",
+
+  "how are you": "I'm doing great! Thanks for asking. How can I assist you today?",
+
+  "what do you do": "I provide AI solutions, website development, chatbot systems, graphics design, smart farming solutions, and digital branding services.",
+
+  "tell me about yourself": "I'm Odukoya Samuel, a Generative AI Engineer, Front-End Developer, Agribusiness Professional, and Founder of Raywise Agrotech Solutions.",
+  "what is your account number": "0070556259, Sterling Bank, Odukoya Ayomide Samuel,Personal for now we are working on the new Company account number pls be patient with us. Thank you.",
+
+  "tell me about yourself": "I'm Odukoya Samuel, a Generative AI Engineer, Front-End Developer, Agribusiness Professional, and Founder of Raywise Agrotech Solutions.",
+
+  "who is the founder of raywise agrotech": "Raywise Agrotech Solutions was founded by Odukoya Samuel.",
+
+  "what is raywise agrotech solutions": "Raywise Agrotech Solutions is a smart agriculture and technology company focused on AI solutions, web development, smart farming, branding, and digital innovation.",
+
+  "do you work remotely": "Yes, I work remotely with clients locally and internationally.",
+
+  "can you work with international clients": "Absolutely! I provide services to clients worldwide.",
+
+  "how much does a website cost": "Website pricing depends on the type and features required. Contact me with your project details for a custom quote.",
+
+  "how much does a chatbot cost": "The cost of a chatbot depends on the complexity and features. Simple chatbots are more affordable than advanced AI-powered systems.",
+
+  "how long does it take to build a website": "Most websites take between a few days to a few weeks depending on the project scope.",
+
+  "what technologies do you use": "I use HTML, CSS, JavaScript, React.js, Python, TensorFlow, Streamlit, and Generative AI technologies.",
+
+  "can you create ai applications": "Yes! I develop AI-powered applications including chatbots, automation systems, and intelligent web platforms.",
+
+  "what is generative ai": "Generative AI is artificial intelligence that can generate content like text, images, code, and conversations automatically.",
+
+  "what is machine learning": "Machine learning is a branch of AI where systems learn patterns from data to make predictions and decisions.",
+
+  "can you build an ecommerce website": "Yes, I can create professional eCommerce websites with payment integration and product management systems.",
+
+  "can you redesign a website": "Absolutely! I can modernize and optimize existing websites for better performance and appearance.",
+
+  "can you help my business grow": "Yes! I create digital solutions and branding strategies that help businesses grow online.",
+
+  "what industries do you work with": "I work with agriculture, churches, startups, businesses, NGOs, and personal brands.",
+
+  "can you design logos": "Yes, I create modern and professional logos tailored to your brand identity.",
+
+  "do you offer branding services": "Yes! I provide complete branding services including logos, flyers, social media designs, and digital identity solutions.",
+
+  "can you create mobile friendly websites": "Yes, all websites I develop are responsive and mobile-friendly.",
+
+  "what is your experience level": "I have practical experience in AI engineering, web development, agribusiness management, and graphics design.",
+
+  "what chatbot projects have you done": "I have developed AI chatbots including the SGBV Support System chatbot and other conversational AI systems.",
+
+  "show me your chatbot": "You can view my chatbot here: https://sgbv-support-system.streamlit.app/",
+
+  "show me your website": "You can view my portfolio website at https://www.raywisecreativity.netlify.app/",
+
+  "show me your agriculture website": "Visit Novi Agro here: https://novi-agro.com",
+
+  "show me your church website": "Visit Lifegate Christian Center here: https://lifegatechristaincenter.netlify.app/",
+
+  "can you help with agriculture technology": "Yes! I combine technology with agriculture through smart farming and digital agricultural solutions.",
+
+  "what is smart farming": "Smart farming uses technology and data-driven systems to improve agricultural productivity and efficiency.",
+
+  "do you sell gadgets": "Yes, I also sell smart gadgets and technology devices.",
+
+  "can you teach web development": "Yes, I can guide beginners in learning web development and AI technologies.",
+
+  "can you mentor students": "Absolutely! I enjoy mentoring students and young tech enthusiasts.",
+
+  "what motivates you": "I'm passionate about using technology and innovation to solve real-world problems.",
+
+  "why should i hire you": "I combine technical expertise, creativity, and problem-solving skills to deliver smart and effective solutions.",
+
+  "what are your strengths": "My strengths include creativity, adaptability, AI development, problem-solving, and effective communication.",
+
+  "what are your future goals": "My goal is to build innovative technology and smart agriculture solutions that create global impact.",
+
+  "thank you": "You're welcome! Feel free to ask me anything else.",
+
+  "bye": "Goodbye! Thank you for visiting Raywise Agrotech Solutions.",
+
+  "see you later": "See you later! Have a wonderful day.",
+
+  "i need help": "Sure! Please tell me what you need help with.",
+
+  "can i hire you": "Yes, absolutely! You can contact me directly to discuss your project requirements.",
+
+  "how do i start a project with you": "Simply send me your project idea, requirements, and goals, and we can get started.",
+
+  "do you have experience in agriculture": "Yes! I have experience in livestock management, poultry production, fisheries, crop farming, and smart agriculture solutions.",
+
+  "what is your educational background": "I studied Animal Science and Fishery Management at Bowen University, Nigeria.",
+
+  "what ai tools do you use": "I work with AI tools and frameworks like TensorFlow, OpenAI APIs, Streamlit, and other machine learning technologies.",
+  
+  "what makes you different": "I combine creativity with cutting-edge technology, blending design, AI, and development skills to deliver solutions that are smart, modern, and engaging."
+};
+  
+
+    function sendMessage() {
+      const inputField = document.getElementById("userInput");
+      const userText = inputField.value.trim().toLowerCase();
+      const chatbox = document.getElementById("chatbox");
+
+      if (userText === "") return;
+
+      chatbox.innerHTML += `<div class='user-message'>${inputField.value}</div>`;
+
+      let botReply = chatbotData[userText] || "Please can you dm +2347069629150 to speak to an agent for more information.";
+
+      chatbox.innerHTML += `<div class='bot-message'>${botReply}</div>`;
+
+      chatbox.scrollTop = chatbox.scrollHeight;
+
+      inputField.value = "";
+    }
+
+    function toggleChatbot() {
+      const chatbot = document.getElementById("chatbot");
+      chatbot.classList.toggle("active");
+    }
+  </script>
+
+  <!-- CHATBOT STYLE -->
+  <style>
+    /* CHATBOT BUTTON */
+.chatbot-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;   /* Smaller size */
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+.chatbot-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;   /* Same line as chatbot */
+  right: 80px;    /* Close beside chatbot icon */
+  width: 45px;    /* Smaller size */
+  height: 45px;
+  z-index: 1000;
+}
+
+.whatsapp-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+    .chatbot-container {
+      width: 300px;
+      height: 400px;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+    }
+    .chatbot-container.active {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    .chatbot-header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .chatbot-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+    .chatbot-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+    .chatbot-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+    }
+    .chatbot-input button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+    .user-message {
+      text-align: right;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    .bot-message {
+      text-align: left;
+      margin-bottom: 8px;
+      color: #4CAF50;
+    }
+  </style>
+
+</body>
+</html>
+
+    <div class="unslate_co--site-wrap">
+
+      <div class="unslate_co--site-inner">
+
+        <div class="lines-wrap">
+          <div class="lines-inner">
+            <div class="lines"></div>
+          </div>
+        </div>
+        <!-- END lines -->
+      
+      <nav class="unslate_co--site-nav site-nav-target">
+
+        <div class="container">
+        
+          <div class="row align-items-center justify-content-between text-left">
+            <div class="col-md-5 text-right">
+              <ul class="site-nav-ul js-clone-nav text-left d-none d-lg-inline-block">
+                <li class="has-children">
+                  <a href="index.html"  class="nav-link">Home</a>
+                  <!-- <ul class="dropdown">
+                    <li>
+                      <a href="index.html">Hero Image BG</a>
+                    </li>
+                    <li>
+                      <a href="index-video.html">Video BG</a>
+                    </li>
+                    <li>
+                      <a href="index-hero-slider.html">Hero Slider</a>
+                    </li>
+                    <li>
+                      <a href="index-sidebar-menu.html">Sidebar Menu</a>
+                    </li>
+                    <li>
+                      <a href="index-right-menu.html">Right Menu</a>
+                    </li>
+                  </ul> -->
+                </li>
+                <li><a href="./Odukoya_Samuel_International_Profile_CV.pdf" class="nav-link">Resume</a></li>
+                <li><a href="#about-section" class="nav-link">About</a></li>
+                <!-- <li><a href="#services-section" class="nav-link">Services</a></li> -->
+              </ul>
+            </div>
+            <div class="site-logo pos-absolute">
+              <a href="index.html" class="unslate_co--site-logo"><img src="./images/my 3d new lgoo .PNG" alt="logo" width="100rem"><span>.</span></a>
+            </div>
+            <div class="col-md-5 text-right text-lg-left">
+              <ul class="site-nav-ul js-clone-nav text-left d-none d-lg-inline-block">
+                <li><a href="#skills-section" class="nav-link">Skills</a></li>
+                <!-- <li><a href="#testimonial-section" class="nav-link">Testimonial</a></li> -->
+                <!-- <li><a href="#journal-section" class="nav-link">Journal</a></li> -->
+                <li><a href="https://formsubmit.co/el/hutevu" class="nav-link">Contact</a></li>
+              </ul>
+
+              <ul class="site-nav-ul-none-onepage text-right d-inline-block d-lg-none">
+                <li><a href="#" class="js-menu-toggle">Menu</a></li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+
+      </nav>
+      <!-- END nav -->
+
+      <div class="cover-v1 jarallax" style="background-image: url('images/samuel\ tech\ \(2\).PNG');" id="home-section">
+        <div class="container">
+          <div class="row align-items-center">
+              
+            <div class="col-md-7 mx-auto text-center">
+              <br>
+              <br>
+              <h1 class="heading gsap-reveal-hero">RAYWISE AGROTECH SOLUTIONS</h1>
+              <h2 class="subheading gsap-reveal-hero">I’m Odukoya Samuel Ayomide  A Web developer and an AL/ML Engineer Based In Lagos,Nigeria</h2>
+            </div>
+
+          </div>
+        </div>
+
+
+        <a href="./Odukoya_Samuel_International_Profile_CV.pdf" class="mouse-wrap smoothscroll">
+          <span class="mouse">
+            <span class="scroll"></span>
+          </span>
+          <span class="mouse-label">Scroll</span>
+        </a>
+
+      </div>
+      <!-- END .cover-v1 -->
+
+
+      <div class="unslate_co--section" id="portfolio-section">
+        <div class="container">
+          
+          
+          <div class="relative"><div class="loader-portfolio-wrap"><div class="loader-portfolio"></div></div> </div>
+          <div id="portfolio-single-holder"></div>
+
+          <div class="portfolio-wrapper">
+
+            <div class="d-flex align-items-center mb-4 gsap-reveal gsap-reveal-filter">
+              <h2 class="mr-auto heading-h2"><span class="gsap-reveal">My Services </span></h2>
+
+              <!-- <a href="#" class="text-white js-filter d-inline-block d-lg-none">Filter</a>
+              
+              <div class="filter-wrap">
+                <div class="filter ml-auto" id="filters">
+                  <a href="#" class="active" data-filter="*">All</a>
+                  <a href="#" data-filter=".web">Web</a>
+                  <a href="#" data-filter=".branding">Branding</a>
+                  <a href="#" data-filter=".illustration">Illustration</a>
+                  <a href="#" data-filter=".packaging">Packaging</a>
+                </div>
+              </div> -->
+            </div>
+
+
+            
+            <div id="posts" class="row gutter-isotope-item">
+              <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
+                <a href="./images/graphics.jpg" class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="1">
+                    <div class="overlay">
+                      <span class="wrap-icon icon-link2"></span>
+                      <div class="portfolio-item-content">
+                        <h3>Graphics Design</h3>
+                        <p>Creating Creative Design </p>
+                      </div>
+                    </div>
+                    <img src="images/graphics.jpg" class="lazyload  img-fluid" alt="Images" />
+                  </a>
+              </div>
+              <div class="item branding packaging illustration col-sm-6 col-md-6 col-lg-4 isotope-mb-2 ">
+                <a href="images/web development.jpg" class="portfolio-item ajax-load-page item-portrait isotope-item gsap-reveal-img" data-id="3">
+                    <div class="overlay">
+                      <span class="wrap-icon icon-link2"></span>
+                      <div class="portfolio-item-content">
+                        <h3>Web Development
+                        <p>Building unique Websites </p>
+                      </div>
+                    </div>
+                    <img src="images/web development.jpg" class="lazyload  img-fluid" alt="Images" />
+                  </a>
+              </div>
+
+              <div class="item branding packaging col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
+                <a href="https://sgbv-support-system.streamlit.app/" class="portfolio-item isotope-item gsap-reveal-img ajax-load-page" data-id="4">
+                    <div class="overlay">
+                      <span class="wrap-icon icon-link2"></span>
+                      <div class="portfolio-item-content">
+                        <h3>Website Chatbot
+                        <p>Building customized chatbot for websites </p>
+                      </div>
+                    </div>
+                    <img src="images/chatbot images.png" class="lazyload  img-fluid" alt="Images" />
+                  </a>
+              </div>
+
+              <div class="item web packaging col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
+
+                <a href="images/AI TOOL.webp" class="portfolio-item isotope-item gsap-reveal-img" data-fancybox="gallery" data-caption="Shoe Rebranding">
+                    <div class="overlay">
+                      <span class="wrap-icon icon-photo2"></span>
+                      <div class="portfolio-item-content">
+                        <h3>Generative AI Projects </h3>
+                        <p>Creating innovative AI-driven project </p>
+                      </div>
+                    </div>
+                    <img src="images/AI TOOL.webp" class="lazyload  img-fluid" alt="Images" />
+                  </a>
+
+              </div>
+
+              <div class="item illustration packaging col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
+                <a href="./images/project deliveerbales.jpg" class="portfolio-item isotope-item gsap-reveal-img" data-fancybox="gallery" data-caption="Shoe Rebranding">
+                    <div class="overlay">
+                      <span class="wrap-icon icon-photo2"></span>
+                      <div class="portfolio-item-content">
+                        <h3>Project Deliverables</h3>
+                        <p>Building and delivering projects on time </p>
+                      </div>
+                    </div>
+                    <img src="images/project deliveerbales.jpg" class="lazyload  img-fluid" alt="Images" />
+                  </a>
+              </div>
+
+        
+
+              <div class="item branding packaging col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
+                <a href="images/WhatsApp Image 2026-05-04 at 09.25.41il.o6.jpeg" class="portfolio-item item-portrait isotope-item gsap-reveal-img " data-fancybox="gallery" data-caption="Modern Building">
+                    <div class="overlay">
+                      <span class="wrap-icon icon-photo2"></span>
+                      <div class="portfolio-item-content">
+                        <h3>Smart farming</h3>
+                        <p>Smart Farming,Better Yield.</p>
+                      </div>
+                    </div>
+                    <img src="images/WhatsApp Image 2026-05-10 at 08.33.48.jpeg" class="lazyload  img-fluid" alt="Images" />
+                  </a>
+              </div>
+
+            
+            </div>
+            
+          </div>
+
+
+        </div>
+      </div>
+
+
+      <div class="unslate_co--section">
+        <div class="container">
+          <div class="owl-carousel logo-slider">
+            <div class="logo-v1 gsap-reveal">
+              <img src="images/html.png" alt="Image" class="img-fluid">
+            </div>
+            <div class="logo-v1 gsap-reveal">
+              <img src="images/css.png" alt="Image" class="img-fluid">
+            </div>
+            <div class="logo-v1 gsap-reveal">
+              <img src="images/js.png" alt="Image" class="img-fluid">
+            </div>
+            <div class="logo-v1 gsap-reveal">
+              <img src="images/anaconda.jpg" alt="Image" class="img-fluid">
+            </div>
+            <div class="logo-v1 gsap-reveal">
+              <img src="images/node.js" alt="Image" class="img-fluid">
+            </div>
+            <div class="logo-v1 gsap-reveal">
+              <img src="images/canva.jpg" alt="Image" class="img-fluid">
+            </div>
+            <div class="logo-v1 gsap-reveal">
+              <img src="images/adobe.jpg" alt="Image" class="img-fluid">
+            </div>
+            <div class="logo-v1 gsap-reveal">
+              <img src="images/node.js" alt="Image" class="img-fluid">
+            <div class="logo-v1 gsap-reveal">
+              <img src="images/python.webp" alt="Image" class="img-fluid">
+            <div class="logo-v1 gsap-reveal">
+              <img src="images/streamliot.webp" alt="Image" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="unslate_co--section" id="about-section">
+        <div class="container">
+          
+          <div class="section-heading-wrap text-center mb-5">
+            <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">About Me</span></h2>
+            <span class="gsap-reveal">
+            <img src="images/divider.png" alt="divider" width="76">
+            </span>
+          </div>
+          
+
+          <div class="row mt-5 justify-content-between">
+            <div class="col-lg-7 mb-5 mb-lg-0">
+              <figure class="dotted-bg gsap-reveal-img ">
+                <img src="images/samuel.jpeg" alt="Image" class="img-fluid">
+              </figure>
+            </div>
+            <div class="col-lg-4 pr-lg-5">
+              <h3 class="mb-4 heading-h3"><span class="gsap-reveal">At Raywise Agrotech Solutions,</span></h3>
+              <p class="lead gsap-reveal">
+                we specialize in deploying advanced technological frameworks designed for modern businesses, organizations, and the agricultural sector. <br> <br>Our Mission is to transform traditional farming into tech-forward industry where innovation drives every decision into creating <a href="#">Solutions</a>.
+              </p>
+              <p class="mb-4 gsap-reveal">
+                The “R” is creatively filled with livestock imagery chicken, broiler, pig, dairy cattle, and other farm animals, clearly representing a diversified livestock farming system. This highlights the company’s strong foundation in animal agriculture and food production.
+<br>
+<br>
+
+	•	The “A” incorporates a circuit-board design, symbolizing advanced technology, smart farming, AI automation, web development, and data-driven solutions & agricultural solutions. It reflects expertise in integrating tech & into agriculture.
+<br>
+<br>
+	•	The “S” is shaped with a hand and lightbulb concept, representing solutions, innovation, and support, emphasizing the company’s role in providing practical, intelligent solutions to people,Companies,Organizations ,farmers and agribusinesses.
+<br>
+<br>
+The dominant green color throughout the logo signifies life, growth, productivity, and environmental sustainability.
+<br>
+<br>
+The motto, “Programming the Future of Agriculture,” clearly communicates the brand’s vision, leveraging technology to revolutionize farming, improve efficiency, and secure the future of food production.
+              </p>
+              <p class="gsap-reveal">
+                <a href="./Odukoya_Samuel_International_Profile_CV.pdf" class="btn btn-outline-pill btn-custom-light">Download my CV</a>
+              </p>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="unslate_co--section" id="services-section">
+        <div class="container">
+      
+          <div class="section-heading-wrap text-center mb-5">
+            <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">My Services</span></h2>
+            <span class="gsap-reveal"><img src="images/divider.png" alt="divider" width="76"></span>
+          </div>
+      
+          <div class="row gutter-v3">
+      
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="feature-v1" data-aos="fade-up" data-aos-delay="0">
+                <div class="wrap-icon mb-3">
+                  <img src="images/svg/001-options.svg" alt="Generative AI Engineering" width="45">
+                </div>
+                <h3>Generative AI <br> Engineering</h3>
+                <p>Building AI-driven web solutions, interactive chatbots, and innovative applications that automate processes and elevate user experiences.</p>
+              </div>
+            </div>
+      
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="feature-v1" data-aos="fade-up" data-aos-delay="100">
+                <div class="wrap-icon mb-3">
+                  <img src="images/svg/002-chat.svg" alt="Front-End Development" width="45">
+                </div>
+                <h3>Front-End <br> Development</h3>
+                <p>Designing and coding responsive, high-performance web applications using HTML, CSS, JavaScript, and React.js — focused on user engagement and speed.</p>
+              </div>
+            </div>
+      
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="feature-v1" data-aos="fade-up" data-aos-delay="200">
+                <div class="wrap-icon mb-3">
+                  <img src="images/svg/003-contact-book.svg" alt="Data Analysis" class="img-fluid" width="45">
+                </div>
+                <h3>Data Science <br> & AI Solutions</h3>
+                <p>Applying machine learning techniques like Tensorflow to solve real-world challenges, from customer churn prediction to GAN-based creative projects.</p>
+              </div>
+            </div>
+      
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="feature-v1" data-aos="fade-up" data-aos-delay="0">
+                <div class="wrap-icon mb-3">
+                  <img src="images/svg/004-percentage.svg" alt="UI/UX Design" width="45">
+                </div>
+                <h3>UI/UX <br> Design</h3>
+                <p>Creating intuitive, accessible, and beautiful user interfaces that deliver seamless navigation and exceptional digital experiences across platforms.</p>
+              </div>
+            </div>
+      
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="feature-v1" data-aos="fade-up" data-aos-delay="100">
+                <div class="wrap-icon mb-3">
+                  <img src="images/svg/006-goal.svg" alt="Graphic Design" width="45">
+                </div>
+                <h3>Creative <br> Graphic Design</h3>
+                <p>Delivering professional visual content, from logos to marketing materials, using Adobe Photoshop, Illustrator, and Canva to strengthen brand identity.</p>
+              </div>
+            </div>
+      
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="feature-v1" data-aos="fade-up" data-aos-delay="200">
+                <div class="wrap-icon mb-3">
+                  <img src="images/svg/005-line-chart.svg" alt="AI Chatbots" width="45">
+                </div>
+                <h3>AI-Powered <br> Chatbots</h3>
+                <p>Developing smart conversational agents and interactive websites like CycleCareAI to create engaging, automated customer and user interactions.</p>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+      
+      <div class="unslate_co--section section-counter" id="skills-section">
+        <div class="container">
+          <div class="section-heading-wrap text-center mb-5">
+            <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">My Skills</span></h2>
+            <span class="gsap-reveal"><img src="images/divider.png" alt="divider" width="76"></span>
+          </div>
+      
+          <div class="row pt-5">
+      
+            <div class="col-6 col-sm-6 mb-5 mb-lg-0 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+              <div class="counter-v1 text-center">
+                <span class="number-wrap">
+                  <span class="number number-counter" data-number="85">0</span>
+                  <span class="append-text">%</span>
+                </span>
+                <span class="counter-label">Python / TensorFlow</span>
+              </div>
+            </div>
+      
+            <div class="col-6 col-sm-6 mb-5 mb-lg-0 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="counter-v1 text-center">
+                <span class="number-wrap">
+                  <span class="number number-counter" data-number="98">0</span>
+                  <span class="append-text">%</span>
+                </span>
+                <span class="counter-label">HTML / CSS / JavaScript</span>
+              </div>
+            </div>
+      
+            <div class="col-6 col-sm-6 mb-5 mb-lg-0 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+              <div class="counter-v1 text-center">
+                <span class="number-wrap">
+                  <span class="number number-counter" data-number="50">0</span>
+                  <span class="append-text">%</span>
+                </span>
+                <span class="counter-label">React.js Development</span>
+              </div>
+            </div>
+      
+            <div class="col-6 col-sm-6 mb-5 mb-lg-0 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+              <div class="counter-v1 text-center">
+                <span class="number-wrap">
+                  <span class="number number-counter" data-number="95">0</span>
+                  <span class="append-text">%</span>
+                </span>
+                <span class="counter-label">Graphic Design (Adobe/Canva)</span>
+              </div>
+            </div>
+      
+            <div class="col-6 col-sm-6 mb-5 mb-lg-0 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+              <div class="counter-v1 text-center">
+                <span class="number-wrap">
+                  <span class="number number-counter" data-number="90">0</span>
+                  <span class="append-text">%</span>
+                </span>
+                <span class="counter-label">Generative AI Solutions</span>
+              </div>
+            </div>
+      
+            <div class="col-6 col-sm-6 mb-5 mb-lg-0 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
+              <div class="counter-v1 text-center">
+                <span class="number-wrap">
+                  <span class="number number-counter" data-number="92">0</span>
+                  <span class="append-text">%</span>
+                </span>
+                <span class="counter-label">UI/UX & Responsive Design</span>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+      
+      <!-- END .counter -->
+
+      <div class="unslate_co--section" id="testimonial-section">
+        <div class="container">
+          <div class="section-heading-wrap text-center mb-5">
+            <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">My Happy Clients</span></h2>
+            <span class="gsap-reveal"><img src="images/divider.png" alt="divider" width="76"></span>
+          </div>
+        </div>
+
+        <div class="owl-carousel testimonial-slider" data-aos="fade-up">
+          <div>
+            <div class="testimonial-v1">
+              <div class="testimonial-inner-bg">
+                <span class="quote">&ldquo;</span>
+                <blockquote>
+                  All thanks to Raywise Agrotech, They created our church website and even dropped our locations for new members to track it and come and also a daily verse everyday. They are the best
+                </blockquote>
+              </div>
+              
+              <div class="testimonial-author-info">
+              
+                <h3>Pastor Femi </h3>
+                <span class="d-block position">Founder of the Church@facebook</span>
+              </div>
+
+            </div>
+          </div>
+          <div>
+            <div class="testimonial-v1">
+              <div class="testimonial-inner-bg">
+                <span class="quote">&ldquo;</span>
+                <blockquote>
+                  He updated our website ,He develped one of the best website i have seen , Raywise Agrotech are the best. Pls Work with them </blockquote>
+              </div>
+              
+              <div class="testimonial-author-info">
+                <!-- <img src="images/person_man_2.jpg" alt="Image"> -->
+                <h3>Mr Chris</h3>
+                <span class="d-block position">CEO of a company@LinkedIn</span>
+              </div>
+
+            </div>
+          </div>
+          <div>
+            <div class="testimonial-v1">
+              <div class="testimonial-inner-bg">
+                <span class="quote">&ldquo;</span>
+                <blockquote>
+                 Raywise Agrotech, you guys are super, u created an amazing chatbot here and is accesible to every user and its changing lives its responding faster than Chatgpt and answers all our questions. All thansk to you </blockquote>
+              </div>
+              
+              <div class="testimonial-author-info">
+                <!-- <img src="images/person_woman_1.jpg" alt="Image"> -->
+                <h3>Erica Miller</h3>
+                <span class="d-block position">NGO in Australia @Twitter</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- END testimonial
+
+      <div class="unslate_co--section" id="journal-section">
+        <div class="container">
+          <div class="section-heading-wrap text-center mb-5">
+            <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">My Journal</span></h2>
+            <span class="gsap-reveal"><img src="images/divider.png" alt="divider" width="76"></span>
+          </div>
+
+          
+          <div class="row gutter-v4 align-items-stretch">
+            <div class="col-sm-6 col-md-6 col-lg-8 blog-post-entry" data-aos="fade-up" data-aos-delay="0">
+
+              <a href="blog-single.html" class="grid-item blog-item w-100 h-100">
+                <div class="overlay">
+                  <div class="portfolio-item-content">
+                    <h3>A Mounteering Guide For Beginners</h3>
+                    <p class="post-meta">By Joefrey <span class="small">&bullet;</span> 5 mins read</p>
+                  </div>
+                </div>
+                <img src="images/post_1.jpg" class="lazyload" alt="Image" />
+              </a>
+ -->
+
+            <!-- </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 blog-post-entry" data-aos="fade-up" data-aos-delay="100">
+              <a href="blog-single.html" class="grid-item blog-item w-100 h-100">
+                <div class="overlay">
+                  <div class="portfolio-item-content">
+                    <h3>A Mounteering Guide For Beginners</h3>
+                    <p class="post-meta">By Joefrey <span class="small">&bullet;</span> 5 mins read</p>
+                  </div>
+                </div>
+                <img src="images/post_2.jpg" class="lazyload" alt="Image" />
+              </a>
+            </div>
+
+
+            <div class="col-sm-6 col-md-6 col-lg-4 blog-post-entry" data-aos="fade-up" data-aos-delay="0">
+
+              <a href="blog-single.html" class="grid-item blog-item w-100 h-100">
+                <div class="overlay">
+                  <div class="portfolio-item-content">
+                    <h3>A Mounteering Guide For Beginners</h3>
+                    <p class="post-meta">By Joefrey <span class="small">&bullet;</span> 5 mins read</p>
+                  </div>
+                </div>
+                <img src="images/post_3.jpg" class="lazyload" alt="Image" />
+              </a>
+
+
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 blog-post-entry" data-aos="fade-up" data-aos-delay="100">
+              <a href="blog-single.html" class="grid-item blog-item w-100 h-100">
+                <div class="overlay">
+                  <div class="portfolio-item-content">
+                    <h3>A Mounteering Guide For Beginners</h3>
+                    <p class="post-meta">By Joefrey <span class="small">&bullet;</span> 5 mins read</p>
+                  </div>
+                </div>
+                <img src="images/post_4.jpg" class="lazyload" alt="Image" />
+              </a>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-4 blog-post-entry" data-aos="fade-up" data-aos-delay="200">
+              <a href="blog-single.html" class="grid-item blog-item w-100 h-100">
+                <div class="overlay">
+                  <div class="portfolio-item-content">
+                    <h3>A Mounteering Guide For Beginners</h3>
+                    <p class="post-meta">By Joefrey <span class="small">&bullet;</span> 5 mins read</p>
+                  </div>
+                </div>
+                <img src="images/post_5.jpg" class="lazyload" alt="Image" />
+              </a>
+            </div>
+
+
+          </div>
+
+        </div>
+      </div> -->
+      <!-- END blog posts -->
+
+
+      <div class="unslate_co--section" id="contact-section">
+        <div class="container">
+          <div class="section-heading-wrap text-center mb-5">
+            <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">Get In Touch</span></h2>
+            <span class="gsap-reveal"><img src="images/divider.png" alt="divider" width="76"></span>
+          </div>
+
+
+          <link rel="stylesheet" href="https://formsubmit.co/el/mocewu">
+          <div class="contact">
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-12">
+     
+                       <form class="main_form" action="https://formsubmit.co/el/mocewu" method="POST">
+                              
+
+                  <div class="col-lg-6 form-group gsap-reveal">
+                    <label for="name">Name</label>
+                    <input name="name" type="text" class="form-control" id="name">
+                  </div>
+                  <div class="col-lg-6 form-group gsap-reveal">
+                    <label for="email">Email</label>
+                    <input name="email" type="email" class="form-control" id="email">
+                  </div>
+                  <div class="col-lg-12 form-group gsap-reveal">
+                    <label for="message">Write your message...</label>
+                    <textarea name="message" id="message" cols="30" rows="7" class="form-control"></textarea>
+                  </div>
+                </div>
+                <div class="form-group row gsap-reveal">
+                    <div class="col-md-12 d-flex align-items-center">
+                      <input type="submit" class="btn btn-outline-pill btn-custom-light mr-3" value="Send Message">
+                      <span class="submitting"></span>
+                    </div>
+                  </div>
+              </form>
+              <div id="form-message-warning" class="mt-4"></div> 
+              <div id="form-message-success">
+                Your message was sent, thank you!
+              </div>
+
+            </div>
+
+            <div class="col-md-4">
+              <div class="contact-info-v1">
+                <div class="gsap-reveal d-block">
+                  <span class="d-block contact-info-label">Email</span>
+                  <a href="#" class="contact-info-val">raywisecreativity@gmail.com</a>
+                </div>
+                <div class="gsap-reveal d-block">
+                  <span class="d-block contact-info-label">Phone</span>
+                  <a href="#" class="contact-info-val">+234 7069 6291 50</a>
+                </div>
+                <div class="gsap-reveal d-block">
+                  <span class="d-block contact-info-label">Address</span>
+                  <address class="contact-info-val"> Lagos. <br> Nigeria,NG</address>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      </div> <!-- END .unslate_co-site-inner -->
+
+      <footer class="unslate_co--footer unslate_co--section">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-7">
+              
+              <div class="footer-site-logo"><a href="#">Raywise Agrotech Solutions<span>.</span></a></div>
+
+              <ul class="footer-site-social">
+                <li><a href="https://www.facebook.com/profile.php?id=100076184612780&mibextid=LQQJ4d ">Facebook</a></li>
+                <li><a href="https://twitter.com/odukoyasamuel13">Twitter</a></li>
+                <li><a href="https://www.instagram.com/raywise_creativity?igsh=MWVqdXI5djhybHdjbg%3D%3D&utm_source=qr">Instagram</a></li>
+                <li><a href="https://wa.me/2347069629150">Whatsapp</a></li>
+                <li><a href="https://www.linkedin.com/in/odukoya-samuel-012a1826a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">linkedln</a></li>
+              </ul>
+
+              <p class="site-copyright">
+                
+         
+                <p class="text-center">
+                  &copy; <script>document.write(new Date().getFullYear());</script> 
+                  All rights reserved | 
+                  <i class="icon-heart" aria-hidden="true"></i> 
+                  by <a href="https://raywisecreativity.netlify.app" target="_blank">Raywise Agrotech Solutions</a>
+                </p>
+                
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      
+    </div>
+
+    
+    <!-- Loader -->
+    <div id="unslate_co--overlayer"></div>
+    <div class="site-loader-wrap">
+      <div class="site-loader"></div>
+    </div>
+
+    <script src="js/scripts-dist.js"></script>
+    <script src="js/main.js"></script>
+
+  </body>
+</html>
