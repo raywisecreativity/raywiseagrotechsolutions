@@ -1,4 +1,10 @@
-
+/*!
+ * Bootstrap Reboot v4.3.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 The Bootstrap Authors
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)
+ */
 *,
 *::before,
 *::after {
@@ -98,11 +104,11 @@ sup {
   top: -.5em; }
 
 a {
-  color: #34d63c;
+  color: #D63447;
   text-decoration: none;
   background-color: transparent; }
   a:hover {
-    color: #409e20;
+    color: #9e202f;
     text-decoration: underline; }
 
 a:not([href]):not([tabindex]) {
